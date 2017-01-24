@@ -1,6 +1,8 @@
 {
   "name": "clack",
-  "start": "node server.js",
+  "scripts":{
+    "start": "node server.js",
+  },
   "version": "0.1.0",
   "dependencies": {
     "angular": "1.5.1",

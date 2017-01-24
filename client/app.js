@@ -3,7 +3,7 @@ console.log("hello world");
 var clack = angular.module('clack', ['ngRoute']);
 clack.config(function($routeProvider){
   $routeProvider
-  .when('/', {
+  .when('/*', {
     templateUrl: '/client/game.html'
   })
   .when('/getclackin', {

@@ -3,17 +3,15 @@ console.log("hello world");
 var clack = angular.module('clack', [])
 .controller('clackController', function($scope, $http){
   $scope.userInfo = {};
-  $scope.username;
-  $scope.userInfo.totalscore = 0;
+  $scope.userInfo.username;
+  $scope.userInfo.currentscore = 0;
+  $scope.userInfo.totalscore;
 
   $scope.addUser = function(username){
-    $scope.username = username;
-    console.log('SCOPE', $scope);
-    console.log('USERNAME', username);
-    console.log('USERNAME', $scope.username);
+    $scope.userInfo.username = username;
     var data = {
-      username: $scope.username,
-      totalscore: $scope.userInfo.totalscore
+      username: $scope.userInfo.username,
+      totalscore: 0
     };
     $http({
       url: '/user',
@@ -29,7 +27,6 @@ var clack = angular.module('clack', [])
 
   $scope.loadUser = function(username){
     $scope.userInfo.loadUser = username;
-
     $http({
       url: '/loaduser',
       method: 'POST',
@@ -37,7 +34,8 @@ var clack = angular.module('clack', [])
         username: $scope.userInfo.loadUser
       }
     }).success(function(data){
-      $scope.userInfo.totalscore = data;
+      $scope.userInfo.totalscore = data.totalscore;
+      $scope.userInfo.currentscore = data.totalscore;
       console.log(data);
       console.log('user loaded');
     }).error(function(error){
@@ -46,7 +44,7 @@ var clack = angular.module('clack', [])
   };
 
   $scope.counter = function(){
-     $scope.userInfo.totalscore++;
-     console.log(totalscore);
+     $scope.userInfo.currentscore++;
+     console.log(currentscore);
   };
 });

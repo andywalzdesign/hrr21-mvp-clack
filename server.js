@@ -22,25 +22,22 @@ app.get('/getclackin.html', function(req, res){
 
 app.post('/loaduser', function(req, res){
   var user = req.body.username;
-  Users.find({username: user}, function(err, user){
+  Users.findOne({username: user}, function(err, user){
     if(err){
       console.log(err);
     }
-    console.log('USER', user[0]);
-    //stuff = users;
-    res.json(user[0]);
+    res.json(user);
   });
 });
 
 app.post('/user', function(req, res){
   var newUser = new Users({username: req.body.username, totalscore: req.body.totalscore});
-  console.log(newUser);
   newUser.save(function(err, newUser){
     if(err){
       return console.log('err', err);
     }
     console.log('newUser in DB');
-    res.send('HERRO post');
+    res.send(newUser);
   });
 });
 

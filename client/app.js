@@ -29,7 +29,6 @@ clack.controller('clackController', function($scope, $http){
       method: 'POST',
       data: JSON.stringify(data)
     }).success(function(data){
-      console.log('user added');
       console.log(data);
     }).error(function(error){
       console.log(error);
@@ -47,8 +46,6 @@ clack.controller('clackController', function($scope, $http){
     }).success(function(data){
       $scope.userInfo.totalscore = data.totalscore;
       $scope.userInfo.currentscore = data.totalscore;
-      console.log(data);
-      console.log('user loaded');
     }).error(function(error){
       console.log(error);
     });
@@ -60,7 +57,6 @@ clack.controller('clackController', function($scope, $http){
       method: 'GET'
     }).success(function(users){
       $scope.userInfo.theUsers = users;
-      console.log(Array.isArray(users));
     }).error(function(err){
       console.log(err);
     });

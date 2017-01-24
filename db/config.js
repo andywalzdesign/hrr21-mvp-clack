@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI);
+var URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/mvp';
+mongoose.connect(URI);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var port = 3000;
+var port = process.env.PORT || 3000;
 //var Users = require('./db/config.js');
 
 app.use('/node_modules', express.static(__dirname + '/node_modules'));

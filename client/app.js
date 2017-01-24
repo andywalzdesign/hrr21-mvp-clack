@@ -19,7 +19,7 @@ var clack = angular.module('clack', [])
       url: '/user',
       method: 'POST',
       data: JSON.stringify(data)
-    }).success(function(err, data){
+    }).success(function(data){
       console.log('user added');
       console.log(data);
     }).error(function(error){
@@ -30,7 +30,13 @@ var clack = angular.module('clack', [])
   $scope.loadUser = function(username){
     $scope.userInfo.loadUser = username;
 
-    $http.get('/user').success(function(err, data){
+    $http({
+      url: '/loaduser',
+      method: 'POST',
+      data: {
+        username: $scope.userInfo.loadUser
+      }
+    }).success(function(data){
       $scope.userInfo.totalscore = data;
       console.log(data);
       console.log('user loaded');

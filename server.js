@@ -20,31 +20,27 @@ app.get('/getclackin.html', function(req, res){
   res.sendFile('/client/getclackin.html', {root: __dirname});
 });
 
-app.get('/user', function(req, res){
-  var user = 'andy';
-  var stuff = [];
-  Users.find({}, function(err, users){
+app.post('/loaduser', function(req, res){
+  var user = req.body.username;
+  Users.find({username: user}, function(err, user){
     if(err){
       console.log(err);
     }
-    console.log('USERS', users);
-    stuff = users;
-    res.send(stuff);
+    console.log('USER', user[0]);
+    //stuff = users;
+    res.json(user[0]);
   });
 });
 
 app.post('/user', function(req, res){
-  //need to get data
-  console.log('PARAMAS', req.body);
   var newUser = new Users({username: req.body.username, totalscore: req.body.totalscore});
-  console.log('34', newUser);
+  console.log(newUser);
   newUser.save(function(err, newUser){
     if(err){
       return console.log('err', err);
     }
-    console.log(newUser);
+    console.log('newUser in DB');
     res.send('HERRO post');
-    return newUser;
   });
 });
 

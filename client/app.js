@@ -54,6 +54,7 @@ clack.controller('clackController', function($scope, $http){
   };
 
   $scope.saveScore = function(){
+    var prompt = $scope.loadPrompt();
     $http({
       url: '/savescore',
       method: 'PUT',
@@ -61,6 +62,14 @@ clack.controller('clackController', function($scope, $http){
         username: $scope.userInfo.username,
         score: $scope.userInfo.currentscore
       }
+    });
+    console.log(prompt);
+  };
+
+  $scope.loadPrompt = function(){
+    $http({
+      url: '/loadPrompt',
+      method: 'GET'
     });
   };
 

@@ -16,10 +16,18 @@ app.get('/', function(req, res){
   res.sendFile('/', {root: __dirname});
 });
 
+app.get('/loadPrompt', function(req, res){
+  res.send('Take a screenshot of your score and brag about it to your friends');
+});
+
 app.put('/savescore', function(req, res){
   var score = req.body.score;
+  var user = req.body.username;
   console.log(score);
-  res.send('updated the users score');
+  Users.findOneAndUpdate({username: user}, {username: user, totalscore: score}, function(err, updatedUser){
+    console.log('updated user', updatedUser);
+    res.json(updatedUser);
+  });
 });
 
 app.post('/loaduser', function(req, res){

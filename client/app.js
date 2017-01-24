@@ -34,18 +34,4 @@ var clack = angular.module('clack', [])
      $scope.userInfo.totalscore++;
      console.log(totalscore);
   };
-
-  // $http.get('/user').success(function(data){
-  //   $scope.totalscore = data.totalscore;
-  // }).error(function(error){
-  //   console.log(error);
-  // });
-
-  // $scope.addUser = function(){
-  //   $http.post('/user', $scope.userInfo).success(function(data){
-  //     $location = '/';
-  //   }).error(function(error){
-  //     console.log(error);
-  //   });
-  // };
 });

@@ -1,7 +1,16 @@
 console.log("hello world");
 
-var clack = angular.module('clack', ['ng-route'])
-.controller('clackController', function($scope, $http){
+var clack = angular.module('clack', ['ngRoute']);
+clack.config(function($routeProvider){
+  $routeProvider
+  .when('/', {
+    templateUrl: '/client/game.html'
+  })
+  .when('/getclackin', {
+    templateUrl: '/client/getclackin.html'
+  })
+});
+clack.controller('clackController', function($scope, $http){
   $scope.userInfo = {};
   $scope.userInfo.username;
   $scope.userInfo.currentscore = 0;

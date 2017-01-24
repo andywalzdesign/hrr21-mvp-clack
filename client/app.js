@@ -1,6 +1,6 @@
 console.log("hello world");
 
-var clack = angular.module('clack', [])
+var clack = angular.module('clack', ['ng-route'])
 .controller('clackController', function($scope, $http){
   $scope.userInfo = {};
   $scope.userInfo.username;

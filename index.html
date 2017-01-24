@@ -3,12 +3,13 @@
 <head>
   <title>Clack</title>
 </head>
-<body ng-controller="clackController">
+<body ng-controller="clackController" ng-view>
   <h2>Hello World</h2>
   <p ng-model="counter">{{userInfo.currentscore}}</p>
   <div class="target" style="width:120px; height:120px;background-color:red;" ng-click="counter()"></div>
   <!-- <button ng-click="roundEnd()"></button> -->
 <script src="node_modules/angular/angular.js"></script>
+<script src="node_modules/angular-route/angular-route.js"></script>
 <script src="client/app.js"></script>
 </body>
 </html>

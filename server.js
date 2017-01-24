@@ -1,12 +1,15 @@
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
-//var Users = require('./db/config.js');
+var Users = require('./db/config.js');
+var bodyParser = require('body-parser');
 
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/client', express.static(__dirname + '/client'));
 app.use('/server', express.static(__dirname + '/server'));
 app.use('/db', express.static(__dirname + '/db'));
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 
 //routes
 app.get('/', function(req, res){
@@ -24,7 +27,7 @@ app.get('/user', function(req, res){
     if(err){
       console.log(err);
     }
-    console.log('24', users);
+    console.log('USERS', users);
     stuff = users;
     res.send(stuff);
   });
@@ -32,7 +35,8 @@ app.get('/user', function(req, res){
 
 app.post('/user', function(req, res){
   //need to get data
-  var newUser = new Users({username: 'req.body.username', totalscore: 0});
+  console.log('PARAMAS', req);
+  var newUser = new Users({username: 'req', totalscore: req.body.totalscore});
   console.log('34', newUser);
   newUser.save(function(err, newUser){
     if(err){
@@ -45,7 +49,7 @@ app.post('/user', function(req, res){
 });
 
 app.get('/*', function(req, res) {
-  res.sendFile('./index.html');
+  res.sendFile('/index.html');
 });
 
 //start up the server

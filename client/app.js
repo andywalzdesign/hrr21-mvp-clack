@@ -11,8 +11,19 @@ var clack = angular.module('clack', [])
       username: $scope.userInfo.username,
       totalscore: $scope.userInfo.totalscore
     };
-    $http.post('/user', data).success(function(err, data){
+    // $http.post('/user', data).success(function(err, data){
+    //   console.log('user added');
+    //   console.log(data);
+    // }).error(function(error){
+    //   console.log(error);
+    // });
+    $http({
+      url: '/user',
+      method: 'POST',
+      data: JSON.stringify(data)
+    }).success(function(err, data){
       console.log('user added');
+      console.log(data);
     }).error(function(error){
       console.log(error);
     });

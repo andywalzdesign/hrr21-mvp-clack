@@ -1,8 +1,5 @@
 {
   "name": "clack",
-  "scripts":{
-    "start": "node server.js"
-  },
   "version": "0.1.0",
   "dependencies": {
     "angular": "1.5.1",
@@ -15,5 +12,8 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0"
+  },
+  "scripts":{
+    "start": "node server.js"
   }
 }

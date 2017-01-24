@@ -40,6 +40,16 @@ app.post('/loaduser', function(req, res){
   });
 });
 
+app.get('/allusers', function(req, res){
+  return Users.find({}, function(err, users){
+    if(err){
+      console.log(err);
+    }
+    console.log('digging');
+    res.json(users);
+  });
+});
+
 app.post('/user', function(req, res){
   var newUser = new Users({username: req.body.username, totalscore: req.body.totalscore});
   newUser.save(function(err, newUser){

@@ -16,6 +16,7 @@ clack.controller('clackController', function($scope, $http){
   $scope.userInfo.username;
   $scope.userInfo.currentscore = 0;
   $scope.userInfo.totalscore;
+  $scope.userInfo.theUsers = [];
 
   $scope.addUser = function(username){
     $scope.userInfo.username = username;
@@ -53,6 +54,18 @@ clack.controller('clackController', function($scope, $http){
     });
   };
 
+  $scope.loadUsers = function(){
+    $http({
+      url: '/allusers',
+      method: 'GET'
+    }).success(function(users){
+      $scope.userInfo.theUsers = users;
+      console.log(Array.isArray(users));
+    }).error(function(err){
+      console.log(err);
+    });
+  };
+
   $scope.saveScore = function(){
     var prompt = $scope.loadPrompt();
     $http({
@@ -63,7 +76,6 @@ clack.controller('clackController', function($scope, $http){
         score: $scope.userInfo.currentscore
       }
     });
-    console.log(prompt);
   };
 
   $scope.loadPrompt = function(){

@@ -12,3 +12,9 @@
   <input type="text" name="loadusername" ng-model="loadusername">
   <button type="submit" ng-click="loadUser(loadusername)">LOAD SCORE</button>
 </form>
+
+<div ng-init="loadUsers()" ng-model="loadUsers">
+<span ng-repeat="user in userInfo.theUsers">
+  <span style="display: block;">{{ user.username }} {{ user.totalscore }}</span>
+</span>
+</div>

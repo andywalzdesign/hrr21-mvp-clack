@@ -56,8 +56,9 @@ clack.controller('clackController', function($scope, $http){
   $scope.saveScore = function(){
     $http({
       url: '/savescore',
-      method: 'POST',
+      method: 'PUT',
       data: {
+        username: $scope.userInfo.username,
         score: $scope.userInfo.currentscore
       }
     });

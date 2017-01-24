@@ -10,6 +10,7 @@ clack.config(function($routeProvider){
     templateUrl: '/client/getclackin.html'
   })
 });
+
 clack.controller('clackController', function($scope, $http){
   $scope.userInfo = {};
   $scope.userInfo.username;
@@ -52,8 +53,18 @@ clack.controller('clackController', function($scope, $http){
     });
   };
 
+  $scope.saveScore = function(){
+    $http({
+      url: '/savescore',
+      method: 'POST',
+      data: {
+        score: $scope.userInfo.currentscore
+      }
+    });
+  };
+
   $scope.counter = function(){
      $scope.userInfo.currentscore++;
-     console.log(currentscore);
+     console.log($scope.userInfo.currentscore);
   };
 });

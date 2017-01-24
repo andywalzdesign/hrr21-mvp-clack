@@ -16,8 +16,13 @@ app.get('/', function(req, res){
   res.sendFile('/', {root: __dirname});
 });
 
-app.get('/getclackin.html', function(req, res){
-  res.sendFile('/client/getclackin.html', {root: __dirname});
+// app.get('/getclackin.html', function(req, res){
+//   res.sendFile('/client/getclackin.html', {root: __dirname});
+// });
+
+app.post('/savescore', function(req, res){
+  var score = req.body.score;
+  console.log(score);
 });
 
 app.post('/loaduser', function(req, res){

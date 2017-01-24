@@ -1,2 +1,14 @@
 <p ng-model="counter">{{userInfo.currentscore}}</p>
   <div class="target" style="width:120px; height:120px;background-color:red;" ng-click="counter()"></div>
+
+<button ng-click="saveScore()">SAVE SCORE</button>
+
+<form>
+  <input type="text" name="username" ng-model="username">
+  <button type="submit" ng-click="addUser(username)">ADD USER</button>
+</form>
+
+<form>
+  <input type="text" name="loadusername" ng-model="loadusername">
+  <button type="submit" ng-click="loadUser(loadusername)">LOAD SCORE</button>
+</form>

@@ -35,8 +35,8 @@ app.get('/user', function(req, res){
 
 app.post('/user', function(req, res){
   //need to get data
-  console.log('PARAMAS', req);
-  var newUser = new Users({username: 'req', totalscore: req.body.totalscore});
+  console.log('PARAMAS', req.body);
+  var newUser = new Users({username: req.body.username, totalscore: req.body.totalscore});
   console.log('34', newUser);
   newUser.save(function(err, newUser){
     if(err){

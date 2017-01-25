@@ -44,9 +44,9 @@ clack.controller('clackController', function($scope, $http, $timeout){
         username: $scope.userInfo.username
       }
     }).success(function(data){
+      $scope.userInfo.currentscore = 0;
       if(data){
         $scope.userInfo.totalscore = data.totalscore;
-        $scope.userInfo.currentscore = data.totalscore;
       }
     }).error(function(error){
       console.log(error);

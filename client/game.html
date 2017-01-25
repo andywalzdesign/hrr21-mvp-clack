@@ -1,20 +1,20 @@
-<p ng-model="counter">{{userInfo.currentscore}}</p>
+<p ng-model="counter"><span>SCORE:</span>{{userInfo.currentscore}}</p>
   <div class="target" style="width:120px; height:120px;background-color:red;" ng-click="counter()"></div>
 
-<!-- <button ng-click="saveScore()">SAVE SCORE</button> -->
-
+<br/>
 <button ng-click="startGame()">STARTGAME</button>
-
+<br/>
+<br/>
 <form>
   <input type="text" name="username" ng-model="username">
   <button type="submit" ng-click="addUser(username)">ADD USER</button>
 </form>
-
+<br/>
 <form>
   <input type="text" name="loadusername" ng-model="loadusername">
   <button type="submit" ng-click="loadUser(loadusername)">LOAD SCORE</button>
 </form>
-
+<br/>
 <div ng-init="loadUsers()" ng-model="loadUsers">
 <span ng-repeat="user in userInfo.theUsers">
   <span style="display: block;">{{ user.username }} {{ user.totalscore }}</span>

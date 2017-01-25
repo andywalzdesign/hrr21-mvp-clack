@@ -36,16 +36,18 @@ clack.controller('clackController', function($scope, $http){
   };
 
   $scope.loadUser = function(username){
-    $scope.userInfo.loadUser = username;
+    $scope.userInfo.username = username;
     $http({
       url: '/loaduser',
       method: 'POST',
       data: {
-        username: $scope.userInfo.loadUser
+        username: $scope.userInfo.username
       }
     }).success(function(data){
-      $scope.userInfo.totalscore = data.totalscore;
-      // $scope.userInfo.currentscore = data.totalscore;
+      if(data){
+        $scope.userInfo.totalscore = data.totalscore;
+        $scope.userInfo.currentscore = data.totalscore;
+      }
     }).error(function(error){
       console.log(error);
     });
@@ -65,7 +67,7 @@ clack.controller('clackController', function($scope, $http){
   $scope.saveScore = function(){
     var prompt = $scope.loadPrompt();
     var newTotal = $scope.userInfo.currentscore + $scope.userInfo.totalscore;
-    console.log(newTotal);
+    console.log('NEW TOTAL', newTotal);
     $http({
       url: '/savescore',
       method: 'PUT',
@@ -75,7 +77,7 @@ clack.controller('clackController', function($scope, $http){
       }
     }).success(function(updatedUser){
       console.log(updatedUser);
-      $scope.userInfo.totalscore = $scope.userInfo.totalscore + updatedUser.totalscore;
+      $scope.userInfo.totalscore += updatedUser.totalscore;
     }).error(function(error){
       console.log(error);
     });
@@ -90,9 +92,9 @@ clack.controller('clackController', function($scope, $http){
 
   $scope.startGame = function(){
     setTimeout(function(){
-      $scope.saveScore();
-      console.log('TIME\'S UP');
+      $scope.saveScore()
       $scope.userInfo.currentscore = 0;
+      console.log('TIME\'S UP');
     }, 1000);
   };
 

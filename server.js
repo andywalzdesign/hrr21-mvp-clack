@@ -23,7 +23,7 @@ app.get('/loadPrompt', function(req, res){
 app.put('/savescore', function(req, res){
   var score = req.body.totalscore;
   var user = req.body.username || 'ABC123';
-
+  console.log('body usr', req.body.username);
   Users.findOneAndUpdate({username: user}, {username: user, totalscore: score}, function(err, updatedUser){
     console.log('updated user', updatedUser);
     res.json(updatedUser);

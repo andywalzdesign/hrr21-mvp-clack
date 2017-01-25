@@ -21,9 +21,9 @@ app.get('/loadPrompt', function(req, res){
 });
 
 app.put('/savescore', function(req, res){
-  var score = req.body.score;
-  var user = req.body.username;
-  console.log(score);
+  var score = req.body.totalscore;
+  var user = req.body.username || 'ABC123';
+
   Users.findOneAndUpdate({username: user}, {username: user, totalscore: score}, function(err, updatedUser){
     console.log('updated user', updatedUser);
     res.json(updatedUser);
@@ -45,7 +45,6 @@ app.get('/allusers', function(req, res){
     if(err){
       console.log(err);
     }
-    console.log('digging');
     res.json(users);
   });
 });

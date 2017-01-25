@@ -11,7 +11,7 @@ clack.config(function($routeProvider){
   })
 });
 
-clack.controller('clackController', function($scope, $http){
+clack.controller('clackController', function($scope, $http, $timeout){
   $scope.userInfo = {};
   $scope.userInfo.username;
   $scope.userInfo.currentscore = 0;
@@ -62,6 +62,10 @@ clack.controller('clackController', function($scope, $http){
     }).error(function(err){
       console.log(err);
     });
+
+    $timeout(function(){
+      $scope.loadUsers();
+    }, 3000);
   };
 
   $scope.saveScore = function(){
@@ -95,7 +99,11 @@ clack.controller('clackController', function($scope, $http){
       $scope.saveScore()
       $scope.userInfo.currentscore = 0;
       console.log('TIME\'S UP');
-    }, 1000);
+      var playAgain = window.confirm('Play Again?');
+      if(playAgain){
+        $scope.startGame();
+      };
+    }, 3000);
   };
 
   $scope.counter = function(){
